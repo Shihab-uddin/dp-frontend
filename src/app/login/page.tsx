@@ -14,7 +14,7 @@ export default function LoginPage() {
     e.preventDefault();
     try {
       const res = await api.post("/auth/login", { email, password });
-      
+
       if (res.status === 200) {
         localStorage.setItem("token", res.data.accessToken);
         // We will fetch permissions in a layout or dashboard component
@@ -30,14 +30,8 @@ export default function LoginPage() {
       {/* Left side - Login Form */}
       <div className="flex w-full flex-col p-8 md:w-1/2 lg:w-5/12 xl:w-[45%]">
         {/* Logo Area */}
-        <div className="flex items-center gap-2 mb-10">
-          <div className="relative flex h-8 w-8 items-center justify-center rounded-lg bg-brand-primary">
-            {/* SVG approximation of the overlapping leaves logo */}
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-5 w-5">
-              <path d="M12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12" stroke="white" strokeWidth="2" strokeLinecap="round" />
-            </svg>
-          </div>
-          <span className="text-xl font-bold tracking-tight text-gray-900">Obliq</span>
+        <div className="mb-10">
+          <img src="/images/logo.png" alt="Obliq Logo" className="h-10" />
         </div>
 
         {/* Form Container */}
@@ -50,7 +44,7 @@ export default function LoginPage() {
 
             <form onSubmit={handleLogin} className="space-y-5">
               {error && <div className="text-sm text-red-500 text-center">{error}</div>}
-              
+
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700">Email</label>
                 <input
@@ -95,7 +89,7 @@ export default function LoginPage() {
 
               <button
                 type="submit"
-                className="mt-6 w-full rounded-xl bg-gradient-to-r from-brand-primary to-brand-dark px-4 py-3.5 text-sm font-medium text-white shadow-lg shadow-brand-primary/30 transition-all hover:opacity-90 active:scale-[0.98]"
+                className="mt-6 w-full rounded-xl bg-brand-primary px-4 py-3.5 text-sm font-bold text-white shadow-[0_8px_24px_rgba(253,109,63,0.4)] transition-all hover:bg-brand-dark hover:shadow-[0_8px_24px_rgba(253,94,43,0.5)] active:scale-[0.98]"
               >
                 Log in
               </button>
@@ -112,34 +106,21 @@ export default function LoginPage() {
       </div>
 
       {/* Right side - Visual Area */}
-      <div className="hidden md:flex w-1/2 lg:w-7/12 xl:w-[55%] relative overflow-hidden bg-brand-primary m-4 ml-0 rounded-3xl items-center justify-center">
-        {/* If images were properly placed in /public, we'd use <img src="/images/background.webp" /> */}
-        {/* Placeholder gradient mimicking the wavy background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#FF9A44] via-brand-primary to-brand-dark opacity-90"></div>
-        
-        {/* Decorative waves overlay */}
-        <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
+      <div className="hidden md:flex w-1/2 lg:w-7/12 xl:w-[55%] relative overflow-hidden rounded-3xl m-4 ml-0 bg-brand-primary">
+        {/* Background Abstract Image */}
+        <img
+          src="/images/abstract.png"
+          alt="Abstract Wavy Background"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
 
-        {/* Dashboard Mockup Overlay */}
-        <div className="relative z-10 w-full max-w-lg translate-x-12 rounded-xl bg-white/90 p-4 shadow-2xl backdrop-blur-md">
-          <div className="flex items-center gap-3 border-b border-gray-100 pb-4">
-            <div className="h-8 w-8 rounded-md bg-blue-500"></div>
-            <div className="flex-1">
-              <div className="h-4 w-24 rounded bg-gray-200"></div>
-              <div className="mt-1 h-3 w-32 rounded bg-gray-100"></div>
-            </div>
-          </div>
-          <div className="mt-4 space-y-4">
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="flex items-center justify-between rounded-lg bg-gray-50 p-3">
-                <div className="flex items-center gap-3">
-                  <div className="h-4 w-4 rounded border border-gray-300"></div>
-                  <div className="h-4 w-32 rounded bg-gray-200"></div>
-                </div>
-                <div className="h-5 w-16 rounded-full bg-red-100 px-2 py-0.5 text-xs text-red-500">Urgent</div>
-              </div>
-            ))}
-          </div>
+        {/* Dashboard Mockup Overlay Image */}
+        <div className="absolute inset-0 flex items-center justify-end">
+          <img
+            src="/images/doc.png"
+            alt="Dashboard Interface Overlay"
+            className="w-[90%] max-w-3xl translate-x-4 object-contain shadow-2xl xl:w-[85%]"
+          />
         </div>
       </div>
     </div>
