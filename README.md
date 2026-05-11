@@ -54,9 +54,3 @@ Use the following credentials to log in:
 
 ---
 
-## 💡 Key Features
-
-- **Responsive Authentication UI**: Glassmorphism and modern gradient design aesthetics accurately mapped from Figma mockups.
-- **Smart API Client**: The `api.ts` utility handles 401 Unauthorized errors gracefully by silently requesting a new access token via the HTTP-Only refresh cookie.
-- **Dynamic Sidebar**: The `Sidebar.tsx` navigation intelligently hides or shows internal modules based on the active user's permissions stored in Zustand.
-- **Visual Permission Editor**: An internal dashboard module allowing Managers/Admins to view and override user permissions.
