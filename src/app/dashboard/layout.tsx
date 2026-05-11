@@ -34,8 +34,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         const payload = JSON.parse(jsonPayload);
         const userId = payload.userId;
 
-        // Fetch permissions
-        const permRes = await api.get(`/permissions/${userId}`);
+        // Fetch permissions securely using the new /me endpoint
+        const permRes = await api.get('/permissions/me');
         setPermissions(permRes.data.permissions || []);
         
         // We set a dummy user for now since we didn't store it from login across reloads
