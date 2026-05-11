@@ -1,8 +1,10 @@
 import axios from 'axios';
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+
 // Create a singleton axios instance
 const api = axios.create({
-  baseURL: 'http://localhost:5000/api', // Should be an env variable in production
+  baseURL: API_URL,
   withCredentials: true, // Send cookies (refresh token) automatically
 });
 
@@ -33,7 +35,7 @@ api.interceptors.response.use(
       originalRequest._retry = true;
 
       try {
-        const res = await axios.post('http://localhost:5000/api/auth/refresh', {}, { withCredentials: true });
+        const res = await axios.post(`${API_URL}/auth/refresh`, {}, { withCredentials: true });
         
         if (res.status === 200) {
           // Store new token
@@ -45,7 +47,7 @@ api.interceptors.response.use(
           // Return originalRequest object with Axios
           return api(originalRequest);
         }
-      } catch (refreshError) {
+      } catch {
         // If refresh fails, we must logout the user
         if (typeof window !== 'undefined') {
           localStorage.removeItem('token');

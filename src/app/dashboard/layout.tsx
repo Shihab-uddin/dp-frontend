@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const { setUser, setPermissions, isAuthenticated } = useAuthStore();
+  const { setUser, setPermissions } = useAuthStore();
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 

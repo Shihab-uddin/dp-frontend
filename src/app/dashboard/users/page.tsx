@@ -22,7 +22,7 @@ export default function UsersPage() {
     try {
       const res = await api.get("/users");
       setUsers(res.data);
-    } catch (err: any) {
+    } catch (err: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
       setError(err.response?.data?.message || "Failed to fetch users. You might lack permissions.");
     } finally {
       setLoading(false);
@@ -37,7 +37,7 @@ export default function UsersPage() {
     try {
       await api.patch(`/users/${userId}/suspend`, { isActive: !currentStatus });
       fetchUsers(); // refresh list
-    } catch (err) {
+    } catch {
       alert("Failed to update user status. Check your permissions.");
     }
   };

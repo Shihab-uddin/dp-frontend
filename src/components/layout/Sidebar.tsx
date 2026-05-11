@@ -10,8 +10,7 @@ import {
   ShieldAlert, 
   Target, 
   CheckSquare, 
-  BarChart, 
-  Settings, 
+  BarChart,
   LogOut 
 } from "lucide-react";
 import clsx from "clsx";
@@ -57,7 +56,7 @@ export default function Sidebar() {
             {user?.email?.[0]?.toUpperCase() || "W"}
           </div>
           <div>
-            <div className="text-sm font-semibold text-gray-900">John's workspace</div>
+            <div className="text-sm font-semibold text-gray-900">John&apos;s workspace</div>
             <div className="text-xs text-gray-400">#WID12446875</div>
           </div>
         </div>

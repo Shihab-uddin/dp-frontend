@@ -38,7 +38,7 @@ export default function PermissionsEditorPage() {
       try {
         const res = await api.get("/users");
         setUsers(res.data);
-      } catch (err) {
+      } catch {
         console.error("Failed to fetch users for permission editor");
       } finally {
         setLoadingUsers(false);
@@ -54,7 +54,7 @@ export default function PermissionsEditorPage() {
       try {
         const res = await api.get(`/permissions/${selectedUserId}`);
         setUserPermissions(res.data.permissions || []);
-      } catch (err) {
+      } catch {
         console.error("Failed to fetch user permissions");
       } finally {
         setLoadingPerms(false);
@@ -78,7 +78,7 @@ export default function PermissionsEditorPage() {
       });
       setMessage(`Successfully ${!currentGranted ? 'granted' : 'revoked'} ${atom}`);
       setTimeout(() => setMessage(""), 3000);
-    } catch (err: any) {
+    } catch (err: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
       // Revert on failure
       setUserPermissions(currentGranted ? [...userPermissions, atom] : userPermissions.filter(p => p !== atom));
       setMessage(err.response?.data?.message || "Failed to update permission. Grant Ceiling reached?");
@@ -138,7 +138,7 @@ export default function PermissionsEditorPage() {
                   <div key={atom} className={`flex items-center justify-between p-4 rounded-xl border ${isGranted ? 'border-brand-primary bg-orange-50/30' : 'border-gray-100 bg-gray-50'}`}>
                     <div>
                       <div className="text-sm font-semibold text-gray-900">{atom}</div>
-                      {!canGrant && <div className="text-xs text-red-400 mt-1">You don't own this permission</div>}
+                      {!canGrant && <div className="text-xs text-red-400 mt-1">You don&apos;t own this permission</div>}
                     </div>
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input 
